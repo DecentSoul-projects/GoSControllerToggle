@@ -165,3 +165,7 @@ installer\                 Install / Uninstall / Restore scripts that go into th
   Game Bar proxy-stub manifest entries.
 
 All code here is new; only the Game Bar sample's project scaffolding was adapted.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Fork it, change it, build on it.
