@@ -1,0 +1,48 @@
+# Builds the installer on GitHub's Windows runner (it has Visual Studio 2022 with the UWP
+# workload, .NET Native and the Windows SDK), so you don't need Visual Studio locally.
+#
+# Signing: by default every run creates a fresh self-signed certificate (CN=ControllerToggle).
+# That's fine - the installer trusts whichever certificate it ships with, and updates still
+# install over older versions because the publisher name stays the same. To sign every build
+# with the same certificate instead, add two repository secrets:
+#   SIGNING_PFX_BASE64    - base64 of signing\ControllerToggle.pfx from a local build
+#   SIGNING_PFX_PASSWORD  - the contents of signing\pfx-password.txt
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use the stored signing certificate (optional)
+        shell: powershell
+        env:
+          PFX_BASE64: ${{ secrets.SIGNING_PFX_BASE64 }}
+          PFX_PASSWORD: ${{ secrets.SIGNING_PFX_PASSWORD }}
+        run: |
+          if (-not $env:PFX_BASE64) { Write-Host 'No stored certificate; Build.ps1 will create one.'; exit 0 }
+          New-Item -ItemType Directory -Force -Path signing | Out-Null
+          $pfx = Join-Path (Resolve-Path signing) 'ControllerToggle.pfx'
+          [IO.File]::WriteAllBytes($pfx, [Convert]::FromBase64String($env:PFX_BASE64))
+          [IO.File]::WriteAllText((Join-Path (Resolve-Path signing) 'pfx-password.txt'), $env:PFX_PASSWORD)
+          $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($pfx, $env:PFX_PASSWORD)
+          [IO.File]::WriteAllBytes((Join-Path (Resolve-Path signing) 'ControllerToggle.cer'), $cert.Export('Cert'))
+          Write-Host "Using certificate $($cert.Thumbprint)"
+
+      - name: Build
+        shell: powershell
+        run: .\build\Build.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ControllerToggle-Setup
+          path: |
+            dist/ControllerToggle-Setup.exe
+            dist/ControllerToggle-Setup.zip
+          if-no-files-found: error

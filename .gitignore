@@ -1,0 +1,15 @@
+# Build output
+dist/
+obj/
+bin/
+src/Widget/AppPackages/
+src/Widget/BundleArtifacts/
+src/Widget/bin/
+src/Widget/obj/
+src/Helper/bin/
+src/Helper/obj/
+.vs/
+*.user
+
+# Your private signing key - never share or commit
+signing/
