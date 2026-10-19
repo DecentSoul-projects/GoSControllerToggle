@@ -195,8 +195,11 @@ writes:
 Keep `signing\` private. Anything signed with that key is trusted on PCs where you installed
 Controller Toggle, and the folder is in `.gitignore`.
 
-No Visual Studio? Fork the repo and run the **Build** workflow in the *Actions* tab. Pushing a
-tag such as `v1.0.1` builds and publishes a GitHub release.
+No Visual Studio? Fork the repo and run the **Build** workflow in the *Actions* tab.
+
+To publish a release: on GitHub, go to *Releases > Draft a new release* and create a new tag such
+as `v1.0.1`. Publishing it starts a build that attaches `ControllerToggle-Setup.exe` and the zip
+to the release (or push a `v*` tag yourself).
 
 ### Project layout
 
