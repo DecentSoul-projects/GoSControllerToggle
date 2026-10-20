@@ -13,10 +13,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]
-
-permissions:
-  contents: write   # lets a tag build publish a GitHub release
 
 jobs:
   build:
@@ -51,27 +47,3 @@ jobs:
             dist/ControllerToggle-Setup.zip
           if-no-files-found: error
 
-      - name: Publish a release (tags only)
-        if: startsWith(github.ref, 'refs/tags/v')
-        shell: powershell
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          $notes = @'
-          **Install:** download `ControllerToggle-Setup.exe`, turn off Smart App Control if it's on
-          (Windows Security > App & browser control > Smart App Control settings), run it, then open
-          Xbox Game Bar > Widgets > Controller Toggle. See the README for details.
-
-          `ControllerToggle-Setup.zip` has the same files for a manual install (`Install.cmd`).
-          '@
-          $files = @('dist/ControllerToggle-Setup.exe', 'dist/ControllerToggle-Setup.zip')
-          # A release made on github.com (which also creates the tag) just gets the files attached.
-          # 'Continue' so gh's "release not found" on stderr isn't turned into a terminating error.
-          $ErrorActionPreference = 'Continue'
-          gh release view $env:GITHUB_REF_NAME *> $null
-          if ($LASTEXITCODE -eq 0) {
-            gh release upload $env:GITHUB_REF_NAME @files --clobber
-          } else {
-            gh release create $env:GITHUB_REF_NAME @files --title "Controller Toggle $env:GITHUB_REF_NAME" --notes $notes
-          }
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

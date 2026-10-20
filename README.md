@@ -176,32 +176,7 @@ An **external controller** is any running XInput device or HID game controller t
 
 Devices are grouped by container ID, so a pad that shows up as several nodes counts once.
 
-## Build from source
-
-You need Windows and **Visual Studio 2022** (Community is fine) with the C# UWP tools. In
-*Visual Studio Installer > Modify*:
-
-1. Tick the **WinUI application development** workload. It's called *Windows application
-   development* in 17.10–17.12 and *Universal Windows Platform development* before that.
-2. Under *Installation details*, tick **Universal Windows Platform tools**.
-
-Then double-click **`Build.cmd`**. It finds Visual Studio and the Windows SDK, creates a
-self-signed certificate in `signing\` on the first run, builds the helper and the widget, and
-writes:
-
-- `dist\ControllerToggle-Setup.exe`: the single-file installer;
-- `dist\ControllerToggle-Setup.zip`: the same files (run `Install.cmd` inside).
-
-Keep `signing\` private. Anything signed with that key is trusted on PCs where you installed
-Controller Toggle, and the folder is in `.gitignore`.
-
-No Visual Studio? Fork the repo and run the **Build** workflow in the *Actions* tab.
-
-To publish a release: on GitHub, go to *Releases > Draft a new release* and create a new tag such
-as `v1.0.1`. Publishing it starts a build that attaches `ControllerToggle-Setup.exe` and the zip
-to the release (or push a `v*` tag yourself).
-
-### Project layout
+## Project layout
 
 ```
 Build.cmd                  double-click to build
@@ -213,7 +188,7 @@ src\Helper\                the service (.NET Framework 4.8, x64; also a CLI: --l
 src\Widget\                the Game Bar widget (UWP, Microsoft.Gaming.XboxGameBar 7.3)
 installer\                 Install / Uninstall / Restore scripts that go into the setup
   SetupLauncher\           the single-file Setup.exe (unpacks the embedded zip, runs Install.ps1)
-.github\workflows\         cloud build and releases
+.github\workflows\         CI build (checks every push compiles)
 ```
 
 ## Credits
