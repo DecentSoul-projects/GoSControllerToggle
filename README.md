@@ -11,12 +11,12 @@ gets the player order wrong too. Controller Toggle switches the built-in control
 tap, or automatically whenever another controller is connected, and turns it back on when you
 undock.
 
-<!-- SCREENSHOTS: add docs/screenshots/*.png and uncomment
 <p align="center">
-  <img src="docs/screenshots/widget-on.png" width="320" alt="Controller Toggle widget, built-in controller on">
-  <img src="docs/screenshots/widget-off.png" width="320" alt="Controller Toggle widget, built-in controller off">
+  <img src="docs/screenshots/widget-on.png" width="380" alt="Controller Toggle widget in Xbox Game Bar: built-in controller on, no external controllers">
+  &nbsp;
+  <img src="docs/screenshots/widget-off.png" width="380" alt="Controller Toggle widget: built-in controller turned off automatically while an 8BitDo controller is connected">
 </p>
--->
+<p align="center"><em>Left: no other controller connected. Right: auto mode turned the built-in controller off when an 8BitDo Ultimate 2 connected.</em></p>
 
 ## Features
 
