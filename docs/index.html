@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Controller Toggle – turn off the Legion Go S built-in controller from Xbox Game Bar</title>
+<meta name="description" content="Free Xbox Game Bar widget that disables the Legion Go S built-in controller when docked, by hand or automatically when an external controller connects, so games use your Xbox, PlayStation or 8BitDo pad as player 1.">
+<link rel="canonical" href="https://decentsoul-projects.github.io/GoSControllerToggle/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Controller Toggle for the Legion Go S">
+<meta property="og:description" content="Turn the handheld's built-in controller off and on from Xbox Game Bar, or automatically when another controller connects.">
+<meta property="og:url" content="https://decentsoul-projects.github.io/GoSControllerToggle/">
+<meta property="og:image" content="https://decentsoul-projects.github.io/GoSControllerToggle/screenshots/widget-off.png">
+<meta name="twitter:card" content="summary_large_image">
+<!-- GOOGLE_SITE_VERIFICATION -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Controller Toggle",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "description": "Xbox Game Bar widget that turns a Windows handheld's built-in controller off and on, manually or automatically when an external controller connects. Made for the Lenovo Legion Go S.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "downloadUrl": "https://github.com/DecentSoul-projects/GoSControllerToggle/releases/latest",
+  "softwareVersion": "1.0.0",
+  "license": "https://opensource.org/licenses/MIT",
+  "codeRepository": "https://github.com/DecentSoul-projects/GoSControllerToggle"
+}
+</script>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#16181d;--muted:#5b6170;--line:#e3e6eb;--accent:#0b6fd8;--accent-ink:#fff;--warn:#8a5a00;--warn-bg:#fff5df}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#181b21;--text:#e9ebef;--muted:#a1a7b3;--line:#2a2f38;--accent:#3b8cff;--accent-ink:#fff;--warn:#f0c46a;--warn-bg:#2a2210}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header{padding:56px 0 24px;text-align:center}
+.kicker{color:var(--muted);font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.15;margin:0 0 14px}
+.lede{max-width:680px;margin:0 auto 26px;color:var(--muted);font-size:1.12rem}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--text);background:var(--card)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.note{font-size:.88rem;color:var(--muted);margin-top:10px}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0 8px}
+.shots figure{margin:0}
+.shots img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+.shots figcaption{font-size:.9rem;color:var(--muted);margin-top:8px;text-align:center}
+section{padding:30px 0;border-top:1px solid var(--line)}
+h2{font-size:1.5rem;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.card h3{margin:0 0 6px;font-size:1.05rem}
+.card p{margin:0;color:var(--muted);font-size:.97rem}
+ol li{margin:6px 0}
+.warn{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:14px 18px;font-size:.97rem}
+.warn a{color:inherit}
+table{border-collapse:collapse;width:100%;font-size:.97rem}
+td,th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media (max-width:640px){.shots{grid-template-columns:1fr}header{padding-top:36px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="kicker">Free · open source · Windows 10 &amp; 11</p>
+  <h1>Turn off your Legion Go S controller when you dock</h1>
+  <p class="lede">Controller Toggle is an Xbox Game Bar widget that disables the handheld's built-in gamepad with one tap, or automatically when you connect an Xbox, PlayStation or 8BitDo controller, so games treat your external controller as player&nbsp;1.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/DecentSoul-projects/GoSControllerToggle/releases/latest/download/ControllerToggle-Setup.exe">Download for Windows</a>
+    <a class="btn" href="https://github.com/DecentSoul-projects/GoSControllerToggle">View on GitHub</a>
+  </div>
+  <p class="note">Version 1.0.0 · <a href="#install">Smart App Control must be off to install</a></p>
+</header>
+
+<div class="shots">
+  <figure>
+    <img src="screenshots/widget-on.png" width="900" height="882" alt="Controller Toggle widget in Xbox Game Bar with the Legion Go S built-in controller on">
+    <figcaption>No other controller connected: the built-in one stays on.</figcaption>
+  </figure>
+  <figure>
+    <img src="screenshots/widget-off.png" width="900" height="886" alt="Controller Toggle widget showing the built-in controller off while an 8BitDo controller is connected">
+    <figcaption>Auto mode turned it off when an 8BitDo Ultimate 2 connected.</figcaption>
+  </figure>
+</div>
+
+<section>
+  <h2>The problem</h2>
+  <p>Dock a Windows handheld and pick up another controller, and the built-in gamepad is still connected. Many games give it player&nbsp;1, ignore your external pad, or react to a stray thumb on the handheld. Lenovo's Legion Space has no switch for it, and people have been asking for one on every handheld forum since 2022.</p>
+</section>
+
+<section>
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card"><h3>One tap in Game Bar</h3><p>Press the Game Bar button and switch the built-in controller off or on, even in the middle of a game, with touch, mouse or your external pad.</p></div>
+    <div class="card"><h3>Auto mode</h3><p>Connect a controller over USB, Xbox Wireless or Bluetooth and the built-in one turns off. Disconnect it and it comes back by itself.</p></div>
+    <div class="card"><h3>Really off</h3><p>Disabled at the Windows level, like Device Manager, so Steam and every game stop seeing it. No HidHide, ViGEm or extra drivers.</p></div>
+    <div class="card"><h3>Hard to get stuck</h3><p>Uninstalling always turns the controller back on, and the widget warns you before you switch off your only controller.</p></div>
+  </div>
+</section>
+
+<section id="install">
+  <h2>Install</h2>
+  <ol>
+    <li>Download <a href="https://github.com/DecentSoul-projects/GoSControllerToggle/releases/latest/download/ControllerToggle-Setup.exe">ControllerToggle-Setup.exe</a>.</li>
+    <li>Turn off Smart App Control if it's on: <em>Windows Security › App &amp; browser control › Smart App Control settings › Off</em>.</li>
+    <li>Run the installer and approve the administrator prompt. If Windows says "Windows protected your PC", choose <em>More info › Run anyway</em>.</li>
+    <li>Press <strong>Win+G</strong> (or the Game Bar button), open <strong>Widgets</strong> and pick <strong>Controller Toggle</strong>.</li>
+  </ol>
+  <p class="warn">Why Smart App Control has to be off: it only runs apps that are signed with a paid commercial certificate or already known to Microsoft. Controller Toggle is a free hobby project with its own certificate. Microsoft Defender and SmartScreen keep protecting you. If you turn Smart App Control back on later, turn the built-in controller on (or uninstall) first.</p>
+</section>
+
+<section>
+  <h2>Supported devices</h2>
+  <table>
+    <tr><th>Device</th><th>Status</th></tr>
+    <tr><td>Lenovo Legion Go S</td><td>Tested</td></tr>
+    <tr><td>Legion Go, Legion Go 2, ROG Ally / Ally X, MSI Claw, Zotac Zone</td><td>Recognized, not tested yet</td></tr>
+  </table>
+  <p>Tried it on another handheld? <a href="https://github.com/DecentSoul-projects/GoSControllerToggle/issues">Let me know how it went</a>.</p>
+</section>
+
+<footer>
+  MIT licensed · <a href="https://github.com/DecentSoul-projects/GoSControllerToggle">Source code and documentation on GitHub</a><br>
+  Not affiliated with Lenovo or Microsoft. Legion is a trademark of Lenovo; Xbox is a trademark of Microsoft.
+</footer>
+</div>
+</body>
+</html>
